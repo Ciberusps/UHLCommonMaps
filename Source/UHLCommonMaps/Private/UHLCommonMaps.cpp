@@ -216,23 +216,50 @@ namespace CommonMapsFunctionLibrary
 
 void FUHLCommonMapsModule::StartupModule()
 {
-	ExtendContextMenu();
+    // Migrate settings from old umbrella plugin section if present
+    bool bMigrationDone = false;
+    GConfig->GetBool(TEXT("/Script/UHLCommonMaps.UHLCommonMapsDeveloperSettings"), TEXT("bMigrationFromOldSettingsDone"), bMigrationDone, GGameIni);
+    if (!bMigrationDone)
+    {
+        if (GConfig->DoesSectionExist(TEXT("/Script/UnrealHelperLibrary.CommonMapsDeveloperSettings"), GGameIni))
+        {
+            TArray<FString> Keys;
+            GConfig->GetSection(TEXT("/Script/UnrealHelperLibrary.CommonMapsDeveloperSettings"), Keys, GGameIni);
+            for (const FString& KeyLine : Keys)
+            {
+                FString Key, Value;
+                if (KeyLine.Split(TEXT("="), &Key, &Value))
+                {
+                    GConfig->SetString(TEXT("/Script/UHLCommonMaps.UHLCommonMapsDeveloperSettings"), *Key, *Value, GGameIni);
+                }
+            }
+        }
+        GConfig->SetBool(TEXT("/Script/UHLCommonMaps.UHLCommonMapsDeveloperSettings"), TEXT("bMigrationFromOldSettingsDone"), true, GGameIni);
+        GConfig->Flush(false, GGameIni);
+    }
 
-	if (!IsRunningGame())
-	{
-		if (FSlateApplication::IsInitialized())
-		{
-			 UToolMenus::RegisterStartupCallback(
-				FSimpleMulticastDelegate::FDelegate::CreateStatic(&CommonMapsFunctionLibrary::RegisterGameEditorMenus));
-		}
-	}
+    if (UUHLCommonMapsDeveloperSettings* Settings = GetMutableDefault<UUHLCommonMapsDeveloperSettings>())
+    {
+        Settings->ReloadConfig();
+    }
 
-	// customization of "SearchFolder" to make "meta=(RelativePath)" work
-	// FPropertyEditorModule& PropEd = FModuleManager::LoadModuleChecked<FPropertyEditorModule>("PropertyEditor");
-	// PropEd.RegisterCustomPropertyTypeLayout(
-	// 	"CommonMapCategory",
-	// 	FOnGetPropertyTypeCustomizationInstance::CreateStatic(&FCommonMapCategoryCustomization::MakeInstance)
-	// );
+    ExtendContextMenu();
+
+    if (!IsRunningGame())
+    {
+        if (FSlateApplication::IsInitialized())
+        {
+             UToolMenus::RegisterStartupCallback(
+                FSimpleMulticastDelegate::FDelegate::CreateStatic(&CommonMapsFunctionLibrary::RegisterGameEditorMenus));
+        }
+    }
+
+    // customization of "SearchFolder" to make "meta=(RelativePath)" work
+    // FPropertyEditorModule& PropEd = FModuleManager::LoadModuleChecked<FPropertyEditorModule>("PropertyEditor");
+    // PropEd.RegisterCustomPropertyTypeLayout(
+    // 	"CommonMapCategory",
+    // 	FOnGetPropertyTypeCustomizationInstance::CreateStatic(&FCommonMapCategoryCustomization::MakeInstance)
+    // );
 }
 
 void FUHLCommonMapsModule::ExtendContextMenu()
