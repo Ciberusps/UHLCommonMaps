@@ -43,13 +43,13 @@ public:
 /**
  * TODO: add rescan folders button
  */
-UCLASS(config="Game", DefaultConfig, DisplayName="Common Maps")
+UCLASS(config="Game", DefaultConfig, DisplayName="UHL Common Maps")
 class UHLCOMMONMAPS_API UUHLCommonMapsDeveloperSettings : public UDeveloperSettings
 {
 	GENERATED_BODY()
 
 public:
-	virtual FName GetCategoryName() const override { return FName("Plugins"); }
+	virtual FName GetCategoryName() const override { return FName("UnrealHelperLibrary"); }
 	
 #if WITH_EDITORONLY_DATA
 	UPROPERTY(Config,EditAnywhere, Category="Common Maps", meta=(ForceInlineRow))
