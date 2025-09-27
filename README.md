@@ -4,7 +4,7 @@ Lyra-like CommonMaps(EditorPlugin) but extended with ability to select folder wi
 
 Support: `UE5.4 (at least) - UE5.6`
 
-TODO: screenshot here
+<img width="641" height="433" alt="image" src="https://github.com/user-attachments/assets/0b393391-c3fd-4543-93a7-41c8962d265e" />
 
 ## ✨ Features
 
@@ -30,7 +30,6 @@ for now not listed
 ## 💡 Use
 
 - Open `ProjectSettings`
-- in UnrealHelperLibrary category `CommonMaps`
-- in MapsCategories add Category
-- and maps that you want
+- in UnrealHelperLibrary category open `CommonMaps`
+- add Category and add maps in category <img width="1069" height="696" alt="image" src="https://github.com/user-attachments/assets/62466ba2-e327-4ac3-8372-2cd347c4cb75" />
 - if you want to auto-generate list of maps use `bAutoSearchMapsInFolder` and specify folder
