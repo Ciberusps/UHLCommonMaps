@@ -2,17 +2,16 @@
 
 Button with common maps in your project to speed up development. Lyra-like CommonMaps(EditorPlugin) but extended with ability to select folder with maps, they will be found in folder and shown
 
-Support: `UE5.4 (at least) - UE5.7`
+Support: `UE5.4 - UE5.7`
 
 <img width="641" height="433" alt="image" src="https://github.com/user-attachments/assets/0b393391-c3fd-4543-93a7-41c8962d265e" />
-
-![UHLCommonMaps](https://github.com/user-attachments/assets/f5e7ad53-c870-4053-8d60-c9cca808ca82)
-
 
 ## ✨ Features
 
 - displays Common project Maps
 - auto-generated list of maps when specifing folder
+
+![UHLCommonMaps](https://github.com/user-attachments/assets/f5e7ad53-c870-4053-8d60-c9cca808ca82)
 
 ## 🚀 Install & ⬆️ Update
 
