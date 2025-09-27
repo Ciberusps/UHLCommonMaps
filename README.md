@@ -1,6 +1,6 @@
 # 🗺️ UHLCommonMaps
 
-Lyra-like CommonMaps but extended with ability to select folder with maps its will be introspected and shown in CommonMaps button
+Lyra-like CommonMaps(EditorPlugin) but extended with ability to select folder with maps, they will be found in folder and shown
 
 Support: `UE5.4 (at least) - UE5.6`
 
